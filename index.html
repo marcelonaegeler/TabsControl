@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Tab Group</title>
+</head>
+<body>
+	<div class="tabGroup">
+		<h1>Tab group 01</h1>
+		<div class="tabNav">
+			<a href="#" class="tabLink">Tab 01</a>
+			<a href="#" class="tabLink">Tab 02</a>
+		</div>
+		<div class="tabBody">
+			<div class="tabItem">
+				<h2>Tab 01</h2>
+			</div>
+			<div class="tabItem">
+				<h2>Tab 02</h2>
+			</div>
+		</div>
+	</div>
+
+	<div class="tabGroup">
+		<h1>Tab group 02</h1>
+		<div class="tabNav">
+			<a href="#" class="tabLink">Tab 01</a>
+			<a href="#" class="tabLink">Tab 02</a>
+		</div>
+		<div class="tabBody">
+			<div class="tabItem">
+				<h2>Tab 01</h2>
+			</div>
+			<div class="tabItem">
+				<h2>Tab 02</h2>
+			</div>
+		</div>
+	</div>
+	<script>
+	(function() {
+		var tabPlugin = document.querySelectorAll('.tabGroup');
+		if(!tabPlugin)
+			return false;
+		
+		function TabElement(tabGroup) {
+			this.tabGroup = tabGroup;
+			this.tabItems = this.tabGroup.querySelector('.tabBody').children;
+			this.tabLinks = this.tabGroup.querySelector('.tabNav').children;
+
+			this.active = 0;
+		}
+
+		TabElement.prototype.setEvents = function() {
+			var tabLinks = this.tabLinks;
+
+			for(var i in tabLinks) {
+				if(!parseInt(i) && parseInt(i) != 0)
+					continue;
+
+				tabLinks[i].setAttribute('rel', i);
+				tabLinks[i].addEventListener('click', function(event) {
+					this.active = parseInt(event.target.rel);
+					this.exec();
+				}.bind(this), false);
+			}
+		};
+
+		TabElement.prototype.exec = function() {
+			var tabItems = this.tabItems;
+			var tabLinks = this.tabLinks;
+
+			for(var i in tabItems) {
+				if(!parseInt(i) && parseInt(i) != 0)
+					continue;
+
+				parseInt(i) == this.active ? tabItems[i].style.display = "block" : tabItems[i].style.display = "none";
+			}
+
+			for(var i in tabLinks) {
+				if(!parseInt(i) && parseInt(i) != 0)
+					continue;
+				
+				parseInt(i) == this.active ? tabLinks[i].classList.add('active') : tabLinks[i].classList.remove('active');
+			}
+		};
+
+		TabElement.prototype.init = function() {
+			this.exec();
+			this.setEvents();
+		};
+
+		for(var group in tabPlugin) {
+			if(!parseInt(group) && parseInt(group) != 0)
+				continue;
+			var setEvents = true
+				, active = 0;
+
+			var tab = new TabElement(tabPlugin[group]).init();
+		}
+	})();
+	</script>
+</body>
+</html>
