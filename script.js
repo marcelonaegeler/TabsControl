@@ -22,7 +22,10 @@
 			tabLinks[i].setAttribute('rel', i);
 			tabLinks[i].addEventListener('click', function(event) {
 				event.preventDefault();
-				this.active = parseInt(event.target.rel);
+				// Se o target não for o próprio link, captura o rel do elemento pai (caso haja img dentro do link ou ícones...)
+				var relActive = (event.target.rel) ? event.target.rel : event.target.parentElement.rel;
+
+				this.active = parseInt(relActive);
 				this.exec();
 			}.bind(this), false);
 		}
