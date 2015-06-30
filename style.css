@@ -1,0 +1,49 @@
+* { 
+	margin: 0;
+	padding: 0; 
+}
+body { 
+	font-family: "DejaVu", Arial, sans-serif;
+	font-size: 12px;
+	background: #eee;
+}
+a {
+	text-decoration: none;
+}
+.content {
+	width: 940px;
+	margin: 20px auto;
+}
+
+.tabGroup {
+	margin-top: 30px;
+}
+
+.tabNav { 
+	margin-left: 15px; 
+}
+.tabLink {
+	color: #666;
+	background: #fff;
+	border-top-right-radius: 3px;
+	border-top-left-radius: 3px;
+	padding: 10px;
+	display: inline-block;
+	border: 1px solid #ccc;
+}
+
+.tabLink.active {
+	border-bottom-color: #fff;
+}
+
+.tabBody {
+	padding: 20px;
+	margin-top: -1px;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+	background: #fff;
+}
+
+.tabItem {
+	display: none;
+}
